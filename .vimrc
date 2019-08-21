@@ -10,19 +10,8 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 
-" The following are examples of different formats supported.
-" Keep Plugin commands between vundle#begin/end.
-" plugin on GitHub repo
-"Plugin 'tpope/vim-fugitive'
-" plugin from http://vim-scripts.org/vim/scripts.html
-"Plugin 'L9'
-" Git plugin not hosted on GitHub
-"Plugin 'git://git.wincent.com/command-t.git'
-" git repos on your local machine (i.e. when working on your own plugin)
-"Plugin 'file:///home/gmarik/path/to/plugin'
-" The sparkup vim script is in a subdirectory of this repo called vim.
-" Pass the path to set the runtimepath properly.
-"Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+" fugitive.vim: A Git wrapper so awesome, it should be illegal
+Plugin 'tpope/vim-fugitive'
 
 " The monokai color scheme.
 Plugin 'filfirst/Monota'
@@ -130,10 +119,18 @@ set foldlevel=10000
 
 " ---------- NerdTree Project Browser ----------
 nnoremap <C-n> :NERDTreeToggle<CR>
+let g:NERDTreeQuitOnOpen = 1
+let g:NERDTreeMinimalMenu = 1
 
-let NERDTreeShowHidden=1
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
+
+"autocmd StdinReadPre * let s:std_in=1
+"autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
+"autocmd BufWritePost * NERDTreeFocus | execute 'normal R' | wincmd p
+
+" ----------- Nerd Commenter ---------------
+let g:NERDSpaceDelims = 1
+let g:NERDCompactSexyComs = 1
+let g:NERDTrimTrailingWhitespace = 1
 
 
 " ---------- Enhanced C++ syntax highlighting ----------
@@ -189,11 +186,6 @@ map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
 " Flag unnecessary whitespace
 au BufRead, BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
 
-
-" ----------- Nerd Commenter ---------------
-let g:NERDSpaceDelims = 1
-let g:NERDCompactSexyComs = 1
-let g:NERDTrimTrailingWhitespace = 1
 
 " ----------- Syntastic ----------------
 
