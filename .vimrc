@@ -10,6 +10,13 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 
+" Flash yanked area
+Plugin 'kana/vim-operator-user'
+Plugin 'haya14busa/vim-operator-flashy'
+
+" better JSON for Vim
+Plugin 'elzr/vim-json'
+
 " fugitive.vim: A Git wrapper so awesome, it should be illegal
 Plugin 'tpope/vim-fugitive'
 
@@ -27,7 +34,9 @@ Plugin 'vim-airline/vim-airline-themes'
 Plugin 'octol/vim-cpp-enhanced-highlight'
 
 " The auto-complete module.
-Plugin 'Valloric/YouCompleteMe'
+" Plugin 'Valloric/YouCompleteMe'
+
+Plugin 'neoclide/coc.nvim', {'branch':'release'}
 
 " Auto-Indentation Python
 Plugin 'vim-scripts/indentpython.vim'
@@ -202,7 +211,20 @@ au BufRead, BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
 " ----------- Autopep8 ---------------
 
 let g:autopep8_ignore="E221"
+let g:autopep8_ignore="E402"
 let g:autopep8_max_line_length=79
 let g:autopep8_aggressive=1
 let g:autopep8_on_save=1
 let g:autopep8_disable_show_diff=1
+
+set termguicolors
+set guicursor=
+set signcolumn=yes
+set cmdheight=2
+set nobackup
+set nowritebackup
+set hidden
+
+" --------- Vim Operator Flashy --------
+map y <Plug>(operator-flashy)
+nmap Y <Plug>(operator-flashy)$
