@@ -1,3 +1,6 @@
+set encoding=utf-8
+scriptencoding utf-8
+
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
@@ -26,15 +29,11 @@ Plugin 'filfirst/Monota'
 " The project source tree browser.
 Plugin 'scrooloose/nerdtree'
 
-" The enhanced editor status bar.
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
+" A light and configurable statusline/tabline plugin for Vim
+Plugin 'itchyny/lightline.vim'
 
 " The enhanced C++ syntax highlighting.
 Plugin 'octol/vim-cpp-enhanced-highlight'
-
-" The auto-complete module.
-" Plugin 'Valloric/YouCompleteMe'
 
 Plugin 'neoclide/coc.nvim', {'branch':'release'}
 
@@ -66,6 +65,13 @@ Plugin 'shime/vim-livedown'
 Plugin 'vim-pandoc/vim-pandoc'
 Plugin 'vim-pandoc/vim-pandoc-syntax'
 
+" Latex Support
+Plugin 'lervag/vimtex'
+Plugin 'sirver/ultisnips'
+
+" Asynchronous linting and make
+Plugin 'neomake/neomake'
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -84,47 +90,6 @@ filetype plugin indent on    " required
 " ---------- Monokai color scheme ----------
 " syntax on
 colorscheme Monota
-
-" ---------- General Settings ----------
-set backspace=indent,eol,start
-
-syntax enable
-
-" Show line numbers
-set number
-
-" Highlight matching brace
-set showmatch
-
-" Highlight all search results
-set hlsearch
-
-" Highlight the current cursor line
-set cursorline
-
-" Highlight the 80 columns margin.
-set colorcolumn=80
-
-" Trim the trailing white space on save.
-autocmd BufWritePre <buffer> :%s/\s\+$//e
-
-" ---------- Indentation ----------
-" Use spaces instead of tabs
-set expandtab
-
-" Number of spaces that a <TAB> in the file counts for
-set tabstop=4
-
-" Number of auto-indent spaces
-set shiftwidth=4
-set autoindent
-
-" ---------- Folding ----------
-set foldenable
-set foldmethod=syntax
-
-" Do not fold the code by default
-set foldlevel=10000
 
 " ---------- NerdTree Project Browser ----------
 nnoremap <C-n> :NERDTreeToggle<CR>
@@ -167,19 +132,6 @@ au BufNewFile, BufRead *.py
     \ set encoding=utf-8|
 
 
-"python with virtualenv support
-py3 << EOF
-import os
-import sys
-if 'VIRTUAL_ENV' in os.environ:
-    project_base_dir = os.environ['VIRTUAL_ENV']
-    activate_this = os.path.join(project_base_dir, 'bin/activate')
-    content = open(activate_this).readlines()
-    content = "".join(content).replace("\n", "")
-    exec(content)
-EOF
-
-
 " let python_highlight_all=1
 " syntax on
 
@@ -206,7 +158,7 @@ au BufRead, BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
 " let g:syntastic_auto_loc_list = 1
 " let g:syntastic_check_on_open = 1
 " let g:syntastic_check_on_wq = 0
-" let g:sytastic_python_checkers=['autopep8', 'pylint']
+let g:sytastic_python_checkers=['autopep8'] ", 'pylint']
 
 " ----------- Autopep8 ---------------
 
@@ -217,6 +169,103 @@ let g:autopep8_aggressive=1
 let g:autopep8_on_save=1
 let g:autopep8_disable_show_diff=1
 
+" --------- Vim Operator Flashy --------
+map y <Plug>(operator-flashy)
+nmap Y <Plug>(operator-flashy)$
+
+" --------- Airline ----------
+" let g:airline_section_b = ''
+" let g:airline_section_z = ''
+
+" -------- Lightline ---------
+let g:lightline = {
+      \ 'colorscheme': 'one',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+      \ },
+      \ 'component_function': {
+      \   'gitbranch': 'FugitiveHead',
+      \   'fileformat': 'LightlineFileformat',
+      \   'filetype': 'LightlineFiletype',
+      \ },
+      \ }
+
+function! LightlineFileformat()
+  return winwidth(0) > 70 ? &fileformat : ''
+endfunction
+
+function! LightlineFiletype()
+  return winwidth(0) > 70 ? (&filetype !=# '' ? &filetype : 'no ft') : ''
+endfunction
+
+" ------- Latex -------
+let g:tex_flavor='latex'
+let g:vimtex_view_method='zathura'
+let g:vimtex_quickfix_mode=0
+set conceallevel=1
+let g:tex_conceal='abdmg'
+
+let g:UltiSnipsExpandTrigger = '<tab>'
+let g:UltiSnipsJumpForwardTrigger = '<tab>'
+let g:UltiSnipsJumpBackwardTrigger = '<s-tab>'
+
+setlocal spell spelllang=en_us,de_ch
+inoremap <C-l> <c-g>u<Esc>[s1z=`]a<c-g>u
+
+" -------- Neomake ---------
+" When writing a buffer (no delay).
+call neomake#configure#automake('w')
+" When writing a buffer (no delay), and on normal mode changes (after 750ms).
+call neomake#configure#automake('nw', 750)
+" When reading a buffer (after 1s), and when writing (no delay).
+call neomake#configure#automake('rw', 1000)
+" Full config: when writing or reading a buffer, and on changes in insert and
+" normal mode (after 500ms; no delay when writing).
+call neomake#configure#automake('nrwi', 500)
+
+" ---------- General Settings ----------
+set backspace=indent,eol,start
+
+syntax enable
+
+" Show line numbers
+set number
+
+" Highlight matching brace
+set showmatch
+
+" Highlight all search results
+set hlsearch
+
+" Highlight the current cursor line
+set cursorline
+
+" Highlight the 80 columns margin.
+set colorcolumn=80
+
+" Trim the trailing white space on save.
+autocmd BufWritePre <buffer> :%s/\s\+$//e
+
+" ---------- Indentation ----------
+" Use spaces instead of tabs
+set expandtab
+
+" Number of spaces that a <TAB> in the file counts for
+set tabstop=4
+
+" Number of auto-indent spaces
+set shiftwidth=4
+set autoindent
+
+" ---------- Folding ----------
+set foldenable
+set foldmethod=syntax
+
+" Do not fold the code by default
+set foldlevel=10000
+
+
 set termguicolors
 set guicursor=
 set signcolumn=yes
@@ -225,6 +274,6 @@ set nobackup
 set nowritebackup
 set hidden
 
-" --------- Vim Operator Flashy --------
-map y <Plug>(operator-flashy)
-nmap Y <Plug>(operator-flashy)$
+" F3: Toggle list (display unprintable characters).
+nnoremap <F3> :set list!<CR>
+set listchars=space:\.
