@@ -112,14 +112,6 @@ let g:cpp_class_scope_highlight=1
 let g:cpp_concepts_highlight=1
 let g:cpp_experimental_simple_template_highlight=1
 
-
-" ---------- YCM Auto Complete ----------
-nnoremap <F12> :YcmCompleter GoTo<CR>
-
-"let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
-let g:ycm_confirm_extra_conf = 0
-let g:ycm_collect_identifiers_from_tags_files = 1
-
 " ---------- Python Support -------------
 au BufNewFile, BufRead *.py
     \ set tabstop=4|
@@ -140,10 +132,6 @@ let NERDTreeIgnore=['\.pyc$', '\~$']
 
 set clipboard=unnamed
 
-" You Complete Me
-let g:ycm_autoclose_preview_window_after_completion=1
-map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
-
 " Flag unnecessary whitespace
 au BufRead, BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
 
@@ -156,9 +144,11 @@ au BufRead, BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
 
 " let g:syntastic_always_populate_loc_list=1
 " let g:syntastic_auto_loc_list = 1
-" let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_open = 1
 " let g:syntastic_check_on_wq = 0
-let g:sytastic_python_checkers=['autopep8'] ", 'pylint']
+" let g:syntastic_python_checkers=['autopep8'] ", 'pylint']
+let g:syntastic_python_checkers=['flake8']
+let g:syntastic_python_python_exec='python3'
 
 " ----------- Autopep8 ---------------
 
@@ -173,16 +163,12 @@ let g:autopep8_disable_show_diff=1
 map y <Plug>(operator-flashy)
 nmap Y <Plug>(operator-flashy)$
 
-" --------- Airline ----------
-" let g:airline_section_b = ''
-" let g:airline_section_z = ''
-
 " -------- Lightline ---------
 let g:lightline = {
       \ 'colorscheme': 'one',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+      \             [ 'gitbranch', 'readonly', 'realpath', 'modified' ] ]
       \ },
       \ 'component_function': {
       \   'gitbranch': 'FugitiveHead',
@@ -277,3 +263,4 @@ set hidden
 " F3: Toggle list (display unprintable characters).
 nnoremap <F3> :set list!<CR>
 set listchars=space:\.
+
