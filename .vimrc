@@ -58,6 +58,9 @@ Plugin 'scrooloose/nerdcommenter'
 " Auto PEP8
 Plugin 'tell-k/vim-autopep8'
 
+" Python Autocompletion
+Plugin 'davidhalter/jedi-vim'
+
 " Markdown Preview
 Plugin 'shime/vim-livedown'
 
@@ -147,8 +150,8 @@ au BufRead, BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
 let g:syntastic_check_on_open = 1
 " let g:syntastic_check_on_wq = 0
 " let g:syntastic_python_checkers=['autopep8'] ", 'pylint']
-let g:syntastic_python_checkers=['flake8']
 let g:syntastic_python_python_exec='python3'
+let g:syntastic_python_checkers=['flake8']
 
 " ----------- Autopep8 ---------------
 
