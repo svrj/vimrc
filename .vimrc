@@ -33,9 +33,6 @@ Plugin 'vim-airline/vim-airline-themes'
 " The enhanced C++ syntax highlighting.
 Plugin 'octol/vim-cpp-enhanced-highlight'
 
-" The auto-complete module.
-" Plugin 'Valloric/YouCompleteMe'
-
 Plugin 'neoclide/coc.nvim', {'branch':'release'}
 
 " Auto-Indentation Python
@@ -66,6 +63,12 @@ Plugin 'shime/vim-livedown'
 Plugin 'vim-pandoc/vim-pandoc'
 Plugin 'vim-pandoc/vim-pandoc-syntax'
 
+" Rust support
+Plugin 'rust-lang/rust.vim'
+
+" Nim support
+Plugin 'zah/nim.vim'
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -84,6 +87,7 @@ filetype plugin indent on    " required
 " ---------- Monokai color scheme ----------
 " syntax on
 colorscheme Monota
+" colorscheme morning
 
 " ---------- General Settings ----------
 set backspace=indent,eol,start
@@ -136,6 +140,9 @@ let g:NERDTreeMinimalMenu = 1
 "autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
 "autocmd BufWritePost * NERDTreeFocus | execute 'normal R' | wincmd p
 
+" Ignore files in NERDTree
+let NERDTreeIgnore=['\.pyc$', '\~$']
+
 " ----------- Nerd Commenter ---------------
 let g:NERDSpaceDelims = 1
 let g:NERDCompactSexyComs = 1
@@ -147,50 +154,7 @@ let g:cpp_class_scope_highlight=1
 let g:cpp_concepts_highlight=1
 let g:cpp_experimental_simple_template_highlight=1
 
-
-" ---------- YCM Auto Complete ----------
-nnoremap <F12> :YcmCompleter GoTo<CR>
-
-"let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
-let g:ycm_confirm_extra_conf = 0
-let g:ycm_collect_identifiers_from_tags_files = 1
-
-" ---------- Python Support -------------
-au BufNewFile, BufRead *.py
-    \ set tabstop=4|
-    \ set softtabstop=4|
-    \ set shiftwidth=4|
-    \ set textwidth=79|
-    \ set expandtab|
-    \ set autoindent|
-    \ set fileformat=unix|
-    \ set encoding=utf-8|
-
-
-"python with virtualenv support
-py3 << EOF
-import os
-import sys
-if 'VIRTUAL_ENV' in os.environ:
-    project_base_dir = os.environ['VIRTUAL_ENV']
-    activate_this = os.path.join(project_base_dir, 'bin/activate')
-    content = open(activate_this).readlines()
-    content = "".join(content).replace("\n", "")
-    exec(content)
-EOF
-
-
-" let python_highlight_all=1
-" syntax on
-
-" Ignore files in NERDTree
-let NERDTreeIgnore=['\.pyc$', '\~$']
-
 set clipboard=unnamed
-
-" You Complete Me
-let g:ycm_autoclose_preview_window_after_completion=1
-map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
 " Flag unnecessary whitespace
 au BufRead, BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
@@ -228,3 +192,39 @@ set hidden
 " --------- Vim Operator Flashy --------
 map y <Plug>(operator-flashy)
 nmap Y <Plug>(operator-flashy)$
+
+" --------- Rust Support ----------
+au BufNewFile, BufRead *.rs
+    \ set tabstop=4|
+    \ set softtabstop=4|
+    \ set shiftwidth=4|
+    \ set textwidth=100|
+    \ set expandtab|
+    \ set autoindent|
+    \ set fileformat=unix|
+    \ set encoding=utf-8|
+
+" --------- Nim Support ----------
+au BufNewFile, BufRead *.nim
+    \ set tabstop=2|
+    \ set softtabstop=2|
+    \ set shiftwidth=2|
+    \ set textwidth=80|
+    \ set expandtab|
+    \ set autoindent|
+    \ set fileformat=unix|
+    \ set encoding=utf-8|
+"
+" ---------- Python Support -------------
+au BufNewFile, BufRead *.py
+    \ set tabstop=4|
+    \ set softtabstop=4|
+    \ set shiftwidth=4|
+    \ set textwidth=79|
+    \ set expandtab|
+    \ set autoindent|
+    \ set fileformat=unix|
+    \ set encoding=utf-8|
+
+
+
