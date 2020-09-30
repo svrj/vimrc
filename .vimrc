@@ -1,11 +1,66 @@
+" ---------- General Settings ----------
 set encoding=utf-8
-scriptencoding utf-8
+set backspace=indent,eol,start
+
+syntax enable
+
+" Show line numbers
+set number
+
+" Highlight matching brace
+set showmatch
+
+" Highlight all search results
+set hlsearch
+
+" Highlight the current cursor line
+set cursorline
+
+" Highlight the 80 columns margin.
+set colorcolumn=80
+
+" Trim the trailing white space on save.
+" autocmd BufWritePre <buffer> :%s/\s\+$//e
+
+" ---------- Indentation ----------
+" Use spaces instead of tabs
+set expandtab
+
+" Number of spaces that a <TAB> in the file counts for
+set tabstop=4
+
+" Number of auto-indent spaces
+set shiftwidth=4
+set autoindent
+
+" ---------- Folding ----------
+set foldenable
+set foldmethod=syntax
+
+" Do not fold the code by default
+set foldlevel=10000
+
+
+set termguicolors
+set guicursor=
+set signcolumn=yes
+set cmdheight=2
+set nobackup
+set nowritebackup
+set hidden
+
+" F3: Toggle list (display unprintable characters).
+nnoremap <F3> :set list!<CR>
+set listchars=space:\.
 
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
+" -------- Vundle --------
+
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
+set rtp+=~/.config/nvim/bundle/Vundle.vim
 call vundle#begin()
 " alternatively, pass a path where Vundle should install plugins
 "call vundle#begin('~/some/path/here')
@@ -135,9 +190,6 @@ let NERDTreeIgnore=['\.pyc$', '\~$']
 
 set clipboard=unnamed
 
-" Flag unnecessary whitespace
-au BufRead, BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
-
 
 " ----------- Syntastic ----------------
 
@@ -213,57 +265,39 @@ call neomake#configure#automake('rw', 1000)
 " normal mode (after 500ms; no delay when writing).
 call neomake#configure#automake('nrwi', 500)
 
-" ---------- General Settings ----------
-set backspace=indent,eol,start
+" -------- CoC ----------
 
-syntax enable
-
-" Show line numbers
-set number
-
-" Highlight matching brace
-set showmatch
-
-" Highlight all search results
-set hlsearch
-
-" Highlight the current cursor line
-set cursorline
-
-" Highlight the 80 columns margin.
-set colorcolumn=80
-
-" Trim the trailing white space on save.
-autocmd BufWritePre <buffer> :%s/\s\+$//e
-
-" ---------- Indentation ----------
-" Use spaces instead of tabs
-set expandtab
-
-" Number of spaces that a <TAB> in the file counts for
-set tabstop=4
-
-" Number of auto-indent spaces
-set shiftwidth=4
-set autoindent
-
-" ---------- Folding ----------
-set foldenable
-set foldmethod=syntax
-
-" Do not fold the code by default
-set foldlevel=10000
-
-
-set termguicolors
-set guicursor=
-set signcolumn=yes
-set cmdheight=2
+" Some servers have issues with backup files, see #649.
 set nobackup
 set nowritebackup
-set hidden
 
-" F3: Toggle list (display unprintable characters).
-nnoremap <F3> :set list!<CR>
-set listchars=space:\.
+" Give more space for displaying messages.
+set cmdheight=2
+
+" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
+" delays and poor user experience.
+set updatetime=300
+
+" Don't pass messages to |ins-completion-menu|.
+set shortmess+=c
+
+" Always show the signcolumn, otherwise it would shift the text each time
+" diagnostics appear/become resolved.
+if has("patch-8.1.1564")
+  " Recently vim can merge signcolumn and number column into one
+  set signcolumn=number
+else
+  set signcolumn=yes
+endif
+
+" Use <c-space> to trigger completion.
+if has('nvim')
+  inoremap <silent><expr> <c-space> coc#refresh()
+else
+  inoremap <silent><expr> <c-@> coc#refresh()
+endif
+
+" ------ General -------
+" Flag unnecessary whitespace
+au BufRead, BufNewFile *.py,*.pyw,*.c,*.h,*.cpp,*.hpp match BadWhitespace /\s\+$/
 
