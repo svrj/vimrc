@@ -110,6 +110,9 @@ Plugin 'christoomey/vim-tmux-navigator'
 " Nerd Commenting
 Plugin 'scrooloose/nerdcommenter'
 
+" VimWiki
+Plugin 'vimwiki/vimwiki'
+
 " Auto PEP8
 Plugin 'tell-k/vim-autopep8'
 
@@ -129,6 +132,9 @@ Plugin 'sirver/ultisnips'
 
 " Asynchronous linting and make
 Plugin 'neomake/neomake'
+
+" Go Support
+Plugin 'fatih/vim-go'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
