@@ -114,7 +114,9 @@ Plugin 'scrooloose/nerdcommenter'
 Plugin 'vimwiki/vimwiki'
 
 " Auto PEP8
-Plugin 'tell-k/vim-autopep8'
+" Plugin 'tell-k/vim-autopep8'
+" Python Black
+Plugin 'psf/black', {'branch':'stable'}
 
 " Python Autocompletion
 Plugin 'davidhalter/jedi-vim'
@@ -213,12 +215,17 @@ let g:syntastic_python_checkers=['flake8']
 
 " ----------- Autopep8 ---------------
 
-let g:autopep8_ignore="E221"
-let g:autopep8_ignore="E402"
-let g:autopep8_max_line_length=79
-let g:autopep8_aggressive=1
-let g:autopep8_on_save=1
-let g:autopep8_disable_show_diff=1
+" let g:autopep8_ignore="E221"
+" let g:autopep8_ignore="E402"
+" let g:autopep8_max_line_length=79
+" let g:autopep8_aggressive=1
+" let g:autopep8_on_save=1
+" let g:autopep8_disable_show_diff=1
+
+" ----------- Black ---------------
+"  Run Black when saving python files
+autocmd BufWritePre *.py execute ':Black'
+let g:black_linelength=79
 
 " --------- Vim Operator Flashy --------
 map y <Plug>(operator-flashy)
