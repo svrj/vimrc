@@ -20,7 +20,7 @@ set cursorline
 set colorcolumn=80
 
 " Trim the trailing white space on save.
-" autocmd BufWritePre <buffer> :%s/\s\+$//e
+autocmd BufWritePre <buffer> :%s/\s\+$//e
 
 " ---------- Indentation ----------
 " Use spaces instead of tabs
@@ -90,7 +90,7 @@ Plugin 'itchyny/lightline.vim'
 " The enhanced C++ syntax highlighting.
 Plugin 'octol/vim-cpp-enhanced-highlight'
 
-Plugin 'neoclide/coc.nvim', {'branch':'release'}
+" Plugin 'neoclide/coc.nvim', {'branch':'release'}
 
 " Auto-Indentation Python
 Plugin 'vim-scripts/indentpython.vim'
@@ -212,6 +212,7 @@ let g:syntastic_check_on_open = 1
 " let g:syntastic_python_checkers=['autopep8'] ", 'pylint']
 let g:syntastic_python_python_exec='python3'
 let g:syntastic_python_checkers=['flake8']
+" let g:syntastic_python_checkers=['black']
 
 " ----------- Autopep8 ---------------
 
@@ -224,7 +225,7 @@ let g:syntastic_python_checkers=['flake8']
 
 " ----------- Black ---------------
 "  Run Black when saving python files
-autocmd BufWritePre *.py execute ':Black'
+" autocmd BufWritePre *.py execute ':Black'
 let g:black_linelength=79
 
 " --------- Vim Operator Flashy --------
@@ -259,6 +260,7 @@ let g:vimtex_view_method='zathura'
 let g:vimtex_quickfix_mode=0
 set conceallevel=1
 let g:tex_conceal='abdmg'
+let g:vimtext_compiler_progname = 'nvr'
 
 let g:UltiSnipsExpandTrigger = '<tab>'
 let g:UltiSnipsJumpForwardTrigger = '<tab>'
@@ -309,6 +311,9 @@ if has('nvim')
 else
   inoremap <silent><expr> <c-@> coc#refresh()
 endif
+
+" Disable for Python files
+autocmd BufNew,BufEnter *.py execute "silent! CocDisable"
 
 " ------ General -------
 " Flag unnecessary whitespace
