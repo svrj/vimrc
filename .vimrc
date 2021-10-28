@@ -17,10 +17,10 @@ set hlsearch
 set cursorline
 
 " Highlight the 80 columns margin.
-set colorcolumn=80
+set colorcolumn=80,99
 
 " Trim the trailing white space on save.
-autocmd BufWritePre <buffer> :%s/\s\+$//e
+" autocmd BufWritePre <buffer> :%s/\s\+$//e
 
 " ---------- Indentation ----------
 " Use spaces instead of tabs
