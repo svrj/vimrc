@@ -92,14 +92,8 @@ Plugin 'octol/vim-cpp-enhanced-highlight'
 
 " Plugin 'neoclide/coc.nvim', {'branch':'release'}
 
-" Auto-Indentation Python
-Plugin 'vim-scripts/indentpython.vim'
-
 " Check Python Syntax
 Plugin 'vim-syntastic/syntastic'
-
-" PEP 8 checking
-Plugin 'nvie/vim-flake8'
 
 " Super Searching
 Plugin 'kien/ctrlp.vim'
@@ -280,17 +274,6 @@ let g:UltiSnipsJumpBackwardTrigger = '<s-tab>'
 
 setlocal spell spelllang=en_us,de_ch
 inoremap <C-l> <c-g>u<Esc>[s1z=`]a<c-g>u
-
-" -------- Neomake ---------
-" When writing a buffer (no delay).
-call neomake#configure#automake('w')
-" When writing a buffer (no delay), and on normal mode changes (after 750ms).
-call neomake#configure#automake('nw', 750)
-" When reading a buffer (after 1s), and when writing (no delay).
-call neomake#configure#automake('rw', 1000)
-" Full config: when writing or reading a buffer, and on changes in insert and
-" normal mode (after 500ms; no delay when writing).
-call neomake#configure#automake('nrwi', 500)
 
 " -------- CoC ----------
 
