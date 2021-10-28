@@ -115,11 +115,18 @@ Plugin 'vimwiki/vimwiki'
 
 " Auto PEP8
 " Plugin 'tell-k/vim-autopep8'
+
 " Python Black
 Plugin 'psf/black', {'branch':'stable'}
 
+" PEP 8 checking
+Plugin 'nvie/vim-flake8'
+
 " Python Autocompletion
 Plugin 'davidhalter/jedi-vim'
+
+" Python Indent
+Plugin 'https://github.com/vim-scripts/indentpython.vim'
 
 " Markdown Preview
 Plugin 'shime/vim-livedown'
@@ -129,19 +136,20 @@ Plugin 'vim-pandoc/vim-pandoc'
 Plugin 'vim-pandoc/vim-pandoc-syntax'
 
 " Latex Support
-Plugin 'lervag/vimtex'
-Plugin 'sirver/ultisnips'
-
-" Asynchronous linting and make
-Plugin 'neomake/neomake'
+" Plugin 'lervag/vimtex'
+" Plugin 'sirver/ultisnips'
 
 " Go Support
 Plugin 'fatih/vim-go'
+
+" Pylint support
+Plugin 'gryf/pylint-vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
+
 "filetype plugin on
 "
 " Brief help
@@ -205,6 +213,9 @@ set clipboard=unnamed
 " set statusline+=%{SyntasticStatuslineFlag()}
 " set statusline+=%*
 
+" Disable pymode
+let g:pymode_lint_on_write=0
+
 " let g:syntastic_always_populate_loc_list=1
 " let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
@@ -212,6 +223,7 @@ let g:syntastic_check_on_open = 1
 " let g:syntastic_python_checkers=['autopep8'] ", 'pylint']
 let g:syntastic_python_python_exec='python3'
 let g:syntastic_python_checkers=['flake8']
+let g:syntastic_python_flake8_args = '--ignore=W503,E203,E501'
 " let g:syntastic_python_checkers=['black']
 
 " ----------- Autopep8 ---------------
@@ -226,7 +238,7 @@ let g:syntastic_python_checkers=['flake8']
 " ----------- Black ---------------
 "  Run Black when saving python files
 " autocmd BufWritePre *.py execute ':Black'
-let g:black_linelength=79
+let g:black_linelength=120
 
 " --------- Vim Operator Flashy --------
 map y <Plug>(operator-flashy)
