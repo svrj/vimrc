@@ -40,7 +40,6 @@ set foldmethod=syntax
 " Do not fold the code by default
 set foldlevel=10000
 
-
 set termguicolors
 set guicursor=
 set signcolumn=yes
@@ -80,6 +79,9 @@ Plugin 'tpope/vim-fugitive'
 
 " The monokai color scheme.
 Plugin 'filfirst/Monota'
+
+" The falcon theme
+Plugin 'fenetikm/falcon'
 
 " The project source tree browser.
 Plugin 'scrooloose/nerdtree'
@@ -154,10 +156,6 @@ filetype plugin indent on    " required
 "
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
-
-" ---------- Monokai color scheme ----------
-" syntax on
-colorscheme Monota
 
 " ---------- NerdTree Project Browser ----------
 nnoremap <C-n> :NERDTreeToggle<CR>
@@ -313,4 +311,19 @@ autocmd BufNew,BufEnter *.py execute "silent! CocDisable"
 " ------ General -------
 " Flag unnecessary whitespace
 au BufRead, BufNewFile *.py,*.pyw,*.c,*.h,*.cpp,*.hpp match BadWhitespace /\s\+$/
+
+" ---------- Monokai color scheme ----------
+" syntax on
+" colorscheme Monota
+"
+" ---------- Falcon -----------
+colorscheme falcon
+
+let g:falcon_lightline = 1
+let g:lightline.colorscheme = 'falcon'
+
+" let g:falcon_airline = 1
+" let g:airline_theme = 'falcon'
+
+
 
