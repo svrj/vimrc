@@ -83,6 +83,12 @@ Plugin 'filfirst/Monota'
 " The falcon theme
 Plugin 'fenetikm/falcon'
 
+" Tokyo Night theme
+Plugin 'folke/tokyonight.nvim', { 'branch': 'main' }
+
+" material theme
+Plugin 'marko-cerovac/material.nvim'
+
 " The project source tree browser.
 Plugin 'scrooloose/nerdtree'
 
@@ -312,18 +318,31 @@ autocmd BufNew,BufEnter *.py execute "silent! CocDisable"
 " Flag unnecessary whitespace
 au BufRead, BufNewFile *.py,*.pyw,*.c,*.h,*.cpp,*.hpp match BadWhitespace /\s\+$/
 
+" ########## Themes ############
 " ---------- Monokai color scheme ----------
 " syntax on
 " colorscheme Monota
 "
-" ---------- Falcon -----------
-colorscheme falcon
 
-let g:falcon_lightline = 1
-let g:lightline.colorscheme = 'falcon'
+" ---------- Falcon -----------
+" colorscheme falcon
+
+" let g:falcon_lightline = 1
+" let g:lightline.colorscheme = 'falcon'
 
 " let g:falcon_airline = 1
 " let g:airline_theme = 'falcon'
 
+" ---------- Tokyo Night -----------
+"
+" let g:tokyonight_style = "day" " storm, night, or day
 
+" colorscheme tokyonight
 
+" let g:lightline = {'colorscheme': 'tokyonight'}
+"
+" ---------- Material -----------
+"Vim-Script:
+let g:material_style = 'deep ocean' " darker, lighter, oceanic, palenight, deep ocean
+
+colorscheme material
