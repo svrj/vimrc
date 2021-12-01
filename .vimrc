@@ -16,8 +16,9 @@ set hlsearch
 " Highlight the current cursor line
 set cursorline
 
-" Highlight the 80 columns margin.
-set colorcolumn=80,99
+" Highlight the 80 column margin.
+" Highlight the 120 margin for black.
+set colorcolumn=80,120
 
 " Trim the trailing white space on save.
 " autocmd BufWritePre <buffer> :%s/\s\+$//e
@@ -85,6 +86,9 @@ Plugin 'fenetikm/falcon'
 
 " Tokyo Night theme
 Plugin 'folke/tokyonight.nvim', { 'branch': 'main' }
+
+" Everforest theme
+Plugin 'sainnhe/everforest'
 
 " material theme
 Plugin 'marko-cerovac/material.nvim'
@@ -343,6 +347,16 @@ au BufRead, BufNewFile *.py,*.pyw,*.c,*.h,*.cpp,*.hpp match BadWhitespace /\s\+$
 "
 " ---------- Material -----------
 "Vim-Script:
-let g:material_style = 'deep ocean' " darker, lighter, oceanic, palenight, deep ocean
+" let g:material_style = 'deep ocean' " darker, lighter, oceanic, palenight, deep ocean
 
-colorscheme material
+" colorscheme material
+"
+
+" ---------- Everforest -----------
+
+set background=dark " dark or light
+let g:everforest_background = 'hard' "hard, medium, soft
+let g:lightline = {'colorscheme' : 'everforest'}
+let g:everforest_enable_italic = 1
+" let g:everforest_disable_italic_comment = 1
+colorscheme everforest
