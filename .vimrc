@@ -142,7 +142,8 @@ Plugin 'fatih/vim-go'
 Plugin 'ziglang/zig.vim'
 
 " Nim support
-Plugin 'zah/nim.vim'
+"Plugin 'zah/nim.vim'
+Plugin 'alaviss/nim.nvim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
