@@ -18,7 +18,7 @@ set cursorline
 
 " Highlight the 80 column margin.
 " Highlight the 120 margin for black.
-set colorcolumn=80,120
+set colorcolumn=80,99,120
 
 " Trim the trailing white space on save.
 " autocmd BufWritePre <buffer> :%s/\s\+$//e
@@ -243,7 +243,7 @@ let g:syntastic_python_flake8_args = '--ignore=W503,E203,E501'
 " ----------- Black ---------------
 "  Run Black when saving python files
 " autocmd BufWritePre *.py execute ':Black'
-let g:black_linelength=120
+let g:black_linelength=99
 
 " --------- Vim Operator Flashy --------
 map y <Plug>(operator-flashy)
