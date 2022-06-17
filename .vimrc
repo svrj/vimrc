@@ -228,7 +228,7 @@ let g:syntastic_check_on_open = 1
 " let g:syntastic_python_checkers=['autopep8'] ", 'pylint']
 let g:syntastic_python_python_exec='python3'
 let g:syntastic_python_checkers=['flake8']
-let g:syntastic_python_flake8_args = '--ignore=W503,E203,E501'
+let g:syntastic_python_flake8_args = '--ignore=W503,E203,E501,E402'
 " let g:syntastic_python_checkers=['black']
 
 " ----------- Autopep8 ---------------
