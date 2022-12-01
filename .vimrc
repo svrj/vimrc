@@ -84,9 +84,6 @@ Plugin 'filfirst/Monota'
 " The falcon theme
 Plugin 'fenetikm/falcon'
 
-" Tokyo Night theme
-Plugin 'folke/tokyonight.nvim', { 'branch': 'main' }
-
 " Everforest theme
 Plugin 'sainnhe/everforest'
 
@@ -153,6 +150,9 @@ Plugin 'gryf/pylint-vim'
 
 " Copilot Support
 Plugin 'github/copilot.vim'
+
+" Nightfox Theme
+Plugin 'EdenEast/nightfox.nvim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -329,7 +329,6 @@ au BufRead, BufNewFile *.py,*.pyw,*.c,*.h,*.cpp,*.hpp match BadWhitespace /\s\+$
 " ---------- Monokai color scheme ----------
 " syntax on
 " colorscheme Monota
-"
 
 " ---------- Falcon -----------
 " colorscheme falcon
@@ -342,11 +341,13 @@ au BufRead, BufNewFile *.py,*.pyw,*.c,*.h,*.cpp,*.hpp match BadWhitespace /\s\+$
 
 " ---------- Tokyo Night -----------
 "
-" let g:tokyonight_style = "day" " storm, night, or day
+if has('nvim')
+    colorscheme carbonfox
+    let g:lightline = {'colorscheme': 'carbonfox'}
+else
+    colorscheme Monota
+endif
 
-" colorscheme tokyonight
-
-" let g:lightline = {'colorscheme': 'tokyonight'}
 "
 " ---------- Material -----------
 "Vim-Script:
@@ -357,9 +358,9 @@ au BufRead, BufNewFile *.py,*.pyw,*.c,*.h,*.cpp,*.hpp match BadWhitespace /\s\+$
 
 " ---------- Everforest -----------
 
-set background=dark " dark or light
-let g:everforest_background = 'hard' "hard, medium, soft
-let g:lightline = {'colorscheme' : 'everforest'}
-let g:everforest_enable_italic = 1
+" set background=dark " dark or light
+" let g:everforest_background = 'hard' "hard, medium, soft
+" let g:lightline = {'colorscheme' : 'everforest'}
+" let g:everforest_enable_italic = 1
 " let g:everforest_disable_italic_comment = 1
-colorscheme everforest
+" colorscheme everforest
