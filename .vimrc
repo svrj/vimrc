@@ -283,7 +283,9 @@ let g:UltiSnipsExpandTrigger = '<tab>'
 let g:UltiSnipsJumpForwardTrigger = '<tab>'
 let g:UltiSnipsJumpBackwardTrigger = '<s-tab>'
 
-setlocal spell spelllang=en_us,de_ch
+if has('nvim')
+    setlocal spell spelllang=en_us,de_ch
+endif
 inoremap <C-l> <c-g>u<Esc>[s1z=`]a<c-g>u
 
 " -------- CoC ----------
