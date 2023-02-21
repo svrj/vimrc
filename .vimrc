@@ -56,119 +56,111 @@ set listchars=space:\.
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
-" -------- Vundle --------
+" -------- vim-plug --------
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-set rtp+=~/.config/nvim/bundle/Vundle.vim
-call vundle#begin()
+let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+if empty(glob(data_dir . '/autoload/plug.vim'))
+  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+call plug#begin()
 " alternatively, pass a path where Vundle should install plugins
 "call vundle#begin('~/some/path/here')
 
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
-
 " Flash yanked area
-Plugin 'kana/vim-operator-user'
-Plugin 'haya14busa/vim-operator-flashy'
+Plug 'kana/vim-operator-user'
+Plug 'haya14busa/vim-operator-flashy'
 
 " better JSON for Vim
-Plugin 'elzr/vim-json'
+Plug 'elzr/vim-json'
 
 " fugitive.vim: A Git wrapper so awesome, it should be illegal
-Plugin 'tpope/vim-fugitive'
+Plug 'tpope/vim-fugitive'
 
 " The monokai color scheme.
-Plugin 'filfirst/Monota'
+Plug 'filfirst/Monota'
 
 " The falcon theme
-Plugin 'fenetikm/falcon'
+Plug 'fenetikm/falcon'
 
 " Everforest theme
-Plugin 'sainnhe/everforest'
+Plug 'sainnhe/everforest'
 
 " material theme
-Plugin 'marko-cerovac/material.nvim'
+Plug 'marko-cerovac/material.nvim'
 
 " The project source tree browser.
-Plugin 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdtree'
 
 " A light and configurable statusline/tabline plugin for Vim
-Plugin 'itchyny/lightline.vim'
+Plug 'itchyny/lightline.vim'
 
 " The enhanced C++ syntax highlighting.
-Plugin 'octol/vim-cpp-enhanced-highlight'
+Plug 'octol/vim-cpp-enhanced-highlight'
 
-" Plugin 'neoclide/coc.nvim', {'branch':'release'}
+" Plug 'neoclide/coc.nvim', {'branch':'release'}
 
 " Check Python Syntax
-Plugin 'vim-syntastic/syntastic'
+Plug 'vim-syntastic/syntastic'
 
 " Super Searching
-Plugin 'kien/ctrlp.vim'
+Plug 'kien/ctrlp.vim'
 
 " tmux navigation
-Plugin 'christoomey/vim-tmux-navigator'
+Plug 'christoomey/vim-tmux-navigator'
 
 " Nerd Commenting
-Plugin 'scrooloose/nerdcommenter'
+Plug 'scrooloose/nerdcommenter'
 
 " VimWiki
-Plugin 'vimwiki/vimwiki'
+Plug 'vimwiki/vimwiki'
 
 " Auto PEP8
-" Plugin 'tell-k/vim-autopep8'
+" Plug 'tell-k/vim-autopep8'
 
 " Python Black
-Plugin 'psf/black', {'branch':'stable'}
+Plug 'psf/black', {'branch':'stable'}
 
 " PEP 8 checking
-Plugin 'nvie/vim-flake8'
+Plug 'nvie/vim-flake8'
 
 " Python Autocompletion
-Plugin 'davidhalter/jedi-vim'
+Plug 'davidhalter/jedi-vim'
 
 " Python Indent
-Plugin 'https://github.com/vim-scripts/indentpython.vim'
+Plug 'https://github.com/vim-scripts/indentpython.vim'
 
 " Markdown Preview
-Plugin 'shime/vim-livedown'
+Plug 'shime/vim-livedown'
 
 " Markdown Pandoc
-Plugin 'vim-pandoc/vim-pandoc'
-Plugin 'vim-pandoc/vim-pandoc-syntax'
+Plug 'vim-pandoc/vim-pandoc'
+Plug 'vim-pandoc/vim-pandoc-syntax'
 
 " Latex Support
-" Plugin 'lervag/vimtex'
-" Plugin 'sirver/ultisnips'
+" Plug 'lervag/vimtex'
+" Plug 'sirver/ultisnips'
 
 " Go Support
-Plugin 'fatih/vim-go'
+"Plug 'fatih/vim-go'
 
 " Pylint support
-Plugin 'gryf/pylint-vim'
+Plug 'gryf/pylint-vim'
 
 " Copilot Support
-Plugin 'github/copilot.vim'
+Plug 'github/copilot.vim'
+
+Plug 'kovetskiy/vim-bash'
 
 " Nightfox Theme
-Plugin 'EdenEast/nightfox.nvim'
+Plug 'EdenEast/nightfox.nvim'
 
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
+" All of your Plugs must be added before the following line
+call plug#end()            " required
 filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
-
 "filetype plugin on
 "
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
 
 " ---------- NerdTree Project Browser ----------
 nnoremap <C-n> :NERDTreeToggle<CR>
