@@ -149,6 +149,8 @@ Plug 'github/copilot.vim'
 
 Plug 'kovetskiy/vim-bash'
 
+Plug 'kovetskiy/vim-bash'
+
 " Nightfox Theme
 Plug 'EdenEast/nightfox.nvim'
 
