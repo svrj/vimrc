@@ -141,9 +141,6 @@ Plug 'vim-pandoc/vim-pandoc-syntax'
 " Plug 'lervag/vimtex'
 " Plug 'sirver/ultisnips'
 
-" Go Support
-"Plug 'fatih/vim-go'
-
 " Pylint support
 Plug 'gryf/pylint-vim'
 
