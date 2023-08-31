@@ -154,6 +154,12 @@ Plug 'kovetskiy/vim-bash'
 " Nightfox Theme
 Plug 'EdenEast/nightfox.nvim'
 
+" Moonfly Theme
+Plug 'https://github.com/bluz71/vim-moonfly-colors'
+
+" Kanagawa Theme
+Plug 'https://github.com/rebelot/kanagawa.nvim'
+
 " All of your Plugs must be added before the following line
 call plug#end()            " required
 filetype plugin indent on    " required
@@ -334,13 +340,24 @@ au BufRead, BufNewFile *.py,*.pyw,*.c,*.h,*.cpp,*.hpp match BadWhitespace /\s\+$
 
 " ---------- Tokyo Night -----------
 "
-if has('nvim')
-    colorscheme carbonfox
-    let g:lightline = {'colorscheme': 'carbonfox'}
-else
-    colorscheme Monota
-endif
+" colorscheme tokyonight
+"
+" ---------- Nightfox -----------
+" if has('nvim')
+    " colorscheme nightfox
+    " let g:lightline = {'colorscheme': 'nightfox'}
+" else
+    " colorscheme Monota
+" endif
 
+" ---------- Moonfly -----------
+"
+" colorscheme moonfly
+
+
+" ---------- Kanagawa -----------
+"
+colorscheme kanagawa-dragon
 "
 " ---------- Material -----------
 "Vim-Script:
