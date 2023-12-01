@@ -93,7 +93,9 @@ Plug 'marko-cerovac/material.nvim'
 Plug 'scrooloose/nerdtree'
 
 " A light and configurable statusline/tabline plugin for Vim
-Plug 'itchyny/lightline.vim'
+" Plug 'itchyny/lightline.vim'
+
+Plug 'nvim-lualine/lualine.nvim'
 
 " The enhanced C++ syntax highlighting.
 Plug 'octol/vim-cpp-enhanced-highlight'
@@ -247,26 +249,26 @@ map y <Plug>(operator-flashy)
 nmap Y <Plug>(operator-flashy)$
 
 " -------- Lightline ---------
-let g:lightline = {
-      \ 'colorscheme': 'one',
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'gitbranch', 'readonly', 'realpath', 'modified' ] ]
-      \ },
-      \ 'component_function': {
-      \   'gitbranch': 'FugitiveHead',
-      \   'fileformat': 'LightlineFileformat',
-      \   'filetype': 'LightlineFiletype',
-      \ },
-      \ }
+" let g:lightline = {
+      " \ 'colorscheme': 'one',
+      " \ 'active': {
+      " \   'left': [ [ 'mode', 'paste' ],
+      " \             [ 'gitbranch', 'readonly', 'realpath', 'modified' ] ]
+      " \ },
+      " \ 'component_function': {
+      " \   'gitbranch': 'FugitiveHead',
+      " \   'fileformat': 'LightlineFileformat',
+      " \   'filetype': 'LightlineFiletype',
+      " \ },
+      " \ }
 
-function! LightlineFileformat()
-  return winwidth(0) > 70 ? &fileformat : ''
-endfunction
+" function! LightlineFileformat()
+  " return winwidth(0) > 70 ? &fileformat : ''
+" endfunction
 
-function! LightlineFiletype()
-  return winwidth(0) > 70 ? (&filetype !=# '' ? &filetype : 'no ft') : ''
-endfunction
+" function! LightlineFiletype()
+  " return winwidth(0) > 70 ? (&filetype !=# '' ? &filetype : 'no ft') : ''
+" endfunction
 
 " ------- Latex -------
 let g:tex_flavor='latex'
@@ -324,6 +326,12 @@ autocmd BufNew,BufEnter *.py execute "silent! CocDisable"
 " Flag unnecessary whitespace
 au BufRead, BufNewFile *.py,*.pyw,*.c,*.h,*.cpp,*.hpp match BadWhitespace /\s\+$/
 
+" ------ Lualine -------
+"
+lua << END
+require('lualine').setup()
+END
+
 " ########## Themes ############
 " ---------- Monokai color scheme ----------
 " syntax on
@@ -334,9 +342,6 @@ au BufRead, BufNewFile *.py,*.pyw,*.c,*.h,*.cpp,*.hpp match BadWhitespace /\s\+$
 
 " let g:falcon_lightline = 1
 " let g:lightline.colorscheme = 'falcon'
-
-" let g:falcon_airline = 1
-" let g:airline_theme = 'falcon'
 
 " ---------- Tokyo Night -----------
 "
