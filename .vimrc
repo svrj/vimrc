@@ -54,7 +54,7 @@ nnoremap <F3> :set list!<CR>
 set listchars=space:\.
 
 set nocompatible              " be iMproved, required
-filetype off                  " required
+"filetype off                  " required
 
 " -------- vim-plug --------
 
@@ -151,8 +151,6 @@ Plug 'github/copilot.vim'
 
 Plug 'kovetskiy/vim-bash'
 
-Plug 'kovetskiy/vim-bash'
-
 " Nightfox Theme
 Plug 'EdenEast/nightfox.nvim'
 
@@ -161,6 +159,18 @@ Plug 'https://github.com/bluz71/vim-moonfly-colors'
 
 " Kanagawa Theme
 Plug 'https://github.com/rebelot/kanagawa.nvim'
+
+" Better syntax-highlighting for filetypes in vim
+Plug 'sheerun/vim-polyglot'
+
+"Tree-sitter support
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+
+" Python Docstring
+Plug 'https://github.com/pixelneo/vim-python-docstring'
+
+" Semantic Highlighting
+Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
 
 " All of your Plugs must be added before the following line
 call plug#end()            " required
@@ -313,21 +323,29 @@ else
 endif
 
 " Use <c-space> to trigger completion.
-if has('nvim')
-  inoremap <silent><expr> <c-space> coc#refresh()
-else
-  inoremap <silent><expr> <c-@> coc#refresh()
-endif
+" if has('nvim')
+  " inoremap <silent><expr> <c-space> coc#refresh()
+" else
+  " inoremap <silent><expr> <c-@> coc#refresh()
+" endif
 
 " Disable for Python files
 autocmd BufNew,BufEnter *.py execute "silent! CocDisable"
+
+" ------ Copilot -------
+:echo "Filetype" &filetype
+if &filetype == "markdown" || &filetype == "text" || &filetype == "vimrc"
+  imap <silent><script><expr> <c-right> copilot#Accept("\<CR>")
+  " inoremap <silent><script><expr> <S-Space> copilot#Accept("\<CR>")
+  let g:copilot_no_tab_map = v:true
+endif
 
 " ------ General -------
 " Flag unnecessary whitespace
 au BufRead, BufNewFile *.py,*.pyw,*.c,*.h,*.cpp,*.hpp match BadWhitespace /\s\+$/
 
 " ------ Lualine -------
-"
+
 lua << END
 require('lualine').setup {
   options = { theme = 'ayu_dark' },
@@ -397,3 +415,4 @@ colorscheme kanagawa-dragon
 " let g:everforest_enable_italic = 1
 " let g:everforest_disable_italic_comment = 1
 " colorscheme everforest
+"
