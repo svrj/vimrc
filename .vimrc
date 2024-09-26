@@ -384,22 +384,21 @@ END
 " colorscheme tokyonight
 "
 " ---------- Nightfox -----------
-" if has('nvim')
-    " colorscheme nightfox
-    " let g:lightline = {'colorscheme': 'nightfox'}
-" else
-    " colorscheme Monota
-" endif
+if has('nvim')
+    colorscheme nightfox
+    let g:lightline = {'colorscheme': 'nightfox'}
+else
+    colorscheme Monota
+endif
 
 " ---------- Moonfly -----------
 "
 " colorscheme moonfly
 
-
 " ---------- Kanagawa -----------
 "
 colorscheme kanagawa-dragon
-"
+
 " ---------- Material -----------
 "Vim-Script:
 " let g:material_style = 'deep ocean' " darker, lighter, oceanic, palenight, deep ocean
@@ -408,11 +407,9 @@ colorscheme kanagawa-dragon
 "
 
 " ---------- Everforest -----------
-
 " set background=dark " dark or light
 " let g:everforest_background = 'hard' "hard, medium, soft
 " let g:lightline = {'colorscheme' : 'everforest'}
 " let g:everforest_enable_italic = 1
 " let g:everforest_disable_italic_comment = 1
 " colorscheme everforest
-"
