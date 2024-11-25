@@ -346,9 +346,10 @@ au BufRead, BufNewFile *.py,*.pyw,*.c,*.h,*.cpp,*.hpp match BadWhitespace /\s\+$
 
 " ------ Lualine -------
 
+if has('nvim')
 lua << END
 require('lualine').setup {
-  options = { theme = 'ayu_dark' },
+  options = { theme = 'ayu_dark'},
   sections = {
     lualine_a = {'mode'},
     lualine_b = {'filename'},
@@ -367,6 +368,7 @@ require('lualine').setup {
   },
 }
 END
+endif
 
 " ########## Themes ############
 " ---------- Monokai color scheme ----------
@@ -397,8 +399,12 @@ endif
 
 " ---------- Kanagawa -----------
 "
-colorscheme kanagawa-dragon
-
+if has('nvim')
+    colorscheme kanagawa-dragon
+    let g:lightline = {'colorscheme': 'kanagawa-dragon'}
+else
+    colorscheme Monota
+endif
 " ---------- Material -----------
 "Vim-Script:
 " let g:material_style = 'deep ocean' " darker, lighter, oceanic, palenight, deep ocean
